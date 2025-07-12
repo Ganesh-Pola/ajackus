@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Directory</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <h2>Employee Directory</h2>
+            <div class="d-flex gap-2 flex-wrap">
+                <button class="btn btn-success" onclick="openForm()">Add Employee</button>
+                <button class="btn btn-outline-primary" onclick="exportToCSV()">Export CSV</button>
+                <input type="file" id="jsonFileInput" accept=".json" onchange="importFromJSON(this)" class="form-control w-auto">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-8">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search by name or email" oninput="searchEmployees()" />
+            </div>
+            <div class="col-md-4 text-end d-flex justify-content-end gap-2">
+                <button class="btn btn-outline-secondary" onclick="toggleFilter()">Filter</button>
+                <select id="sortBy" class="form-select w-auto" onchange="applySort()">
+                    <option value="">Sort By</option>
+                    <option value="firstName">First Name (A-Z)</option>
+                    <option value="lastName">Last Name (A-Z)</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Filter Panel -->
+        <div id="filterPanel" class="mb-3">
+            <div class="row g-2">
+                <div class="col-md-4">
+                    <input type="text" id="filterFirstName" class="form-control" placeholder="First Name" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="filterDepartment" class="form-control" placeholder="Department" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="filterRole" class="form-control" placeholder="Role" />
+                </div>
+            </div>
+            <div class="mt-2 text-end">
+                <button class="btn btn-primary" onclick="applyFilter()">Apply</button>
+                <button class="btn btn-secondary" onclick="resetFilter()">Reset</button>
+            </div>
+        </div>
+
+        <div class="row" id="employeeList">
+            <!-- Employees rendered here -->
+        </div>
+
+        <nav>
+            <ul class="pagination justify-content-center mt-4" id="pagination"></ul>
+        </nav>
+
+        <div class="text-center mt-3">
+            <button class="btn btn-danger" onclick="clearAllEmployees()">Clear All Employees</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="employeeModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="formTitle">Add Employee</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="employeeForm">
+                        <input type="hidden" id="employeeId" />
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" id="firstName" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" id="lastName" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="email" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Department</label>
+                            <input type="text" id="department" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Role</label>
+                            <input type="text" id="role" class="form-control" required />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" onclick="saveEmployee()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

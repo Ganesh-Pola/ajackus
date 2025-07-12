@@ -1,0 +1,87 @@
+body {
+    background-color: #f8f9fa;
+}
+
+.employee-card {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #ffffff;
+    padding: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.employee-card h5 {
+    margin-bottom: 8px;
+    font-size: 1.25rem;
+}
+
+.employee-card p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+#filterPanel {
+    transition: transform 0.3s ease-in-out;
+    display: none;
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+#filterPanel.show {
+    display: block !important;
+}
+
+.modal .modal-header {
+    background-color: #f1f1f1;
+}
+
+.modal-title {
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    #filterPanel {
+        width: 100%;
+        height: auto;
+        position: fixed;
+        bottom: 0;
+        top: auto;
+        z-index: 1050;
+        left: 0;
+        right: 0;
+    }
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.pagination .page-link {
+    color: #0d6efd;
+}
+
+.modal-body .form-group {
+    margin-bottom: 1rem;
+}
+
+.btn+.btn {
+    margin-left: 5px;
+}
+
+@media (max-width: 576px) {
+    .employee-card {
+        padding: 12px;
+    }
+
+    .employee-card h5 {
+        font-size: 1rem;
+    }
+
+    .employee-card p {
+        font-size: 0.85rem;
+    }
+}
